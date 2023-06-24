@@ -1,11 +1,13 @@
 import "@styles/globals.css";
+import Nav from "@components/Nav.jsx";
+import Provider from "@components/Provider.jsx";
 
 export const metadata = {
   title: "Promtopia",
   description: "Discover & Share AI Prompts",
 };
 
-const RootLayout = () => {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
@@ -13,7 +15,10 @@ const RootLayout = () => {
           <div className="gradient" />
         </div>
 
-        <main>{children}</main>
+        <main className="app">
+          <Nav />
+          {children}
+        </main>
       </body>
     </html>
   );
