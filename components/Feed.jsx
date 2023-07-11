@@ -26,13 +26,13 @@ export const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
 
   //filter function to find searched prompts, tags, and usernames
-  const promptFilter = async (searchText) => {
+  const promptFilter = (searchText) => {
     const regex = new RegExp(searchText, "i");
     return posts.filter(
       (post) =>
         regex.test(post.creator.username) ||
-        regex.test(post.prompt) ||
-        regex.test(post.tag)
+        regex.test(post.tag) ||
+        regex.test(post.prompt)
     );
   };
 
