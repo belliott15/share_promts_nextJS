@@ -1,6 +1,6 @@
-import "@styles/globals.css";
-import Nav from "@components/Nav.jsx";
-import Provider from "@components/Provider.jsx";
+import "../styles/globals.css";
+import Nav from "../components/Nav.jsx";
+import Provider from "../components/Provider.jsx";
 
 export const metadata = {
   title: "Promtopia",
