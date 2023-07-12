@@ -18,11 +18,36 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 export const Feed = () => {
-  const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
 
+  //search state
+  const [searchText, setSearchText] = useState("");
+  const [searchedResults, setSearchedResults] = useState([]);
+  const [searchTimeout, setSearchTimeout] = useState(null);
+
+  //filter function to find searched prompts, tags, and usernames
+  const promptFilter = (searchText) => {
+    const regex = new RegExp(searchText, "i");
+    return posts.filter(
+      (post) =>
+        regex.test(post.creator.username) ||
+        regex.test(post.tag) ||
+        regex.test(post.prompt)
+    );
+  };
+
+  //search function on input change
   const handleSearchChange = (e) => {
-    e.preventDefault;
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchedResults = promptFilter(e.target.value);
+        console.log(searchedResults);
+        setSearchedResults(searchedResults);
+      }, 1000)
+    );
   };
 
   useEffect(() => {
@@ -49,7 +74,12 @@ export const Feed = () => {
         />
       </form>
 
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      {/* conditional to display only certain prompts */}
+      {searchText ? (
+        <PromptCardList data={searchedResults} handleTagClick={() => {}} />
+      ) : (
+        <PromptCardList data={posts} handleTagClick={() => {}} />
+      )}
     </section>
   );
 };
