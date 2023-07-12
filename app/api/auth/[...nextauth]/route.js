@@ -1,8 +1,8 @@
 // set up authentications
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { connectToDB } from "@utils/database.js";
-import User from "@models/user.js";
+import { connectToDB } from "../../../../utils/database.js";
+import User from "../../../../models/user.js";
 
 const handler = NextAuth({
   providers: [

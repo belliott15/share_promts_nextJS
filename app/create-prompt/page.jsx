@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import Form from "@components/Form.jsx";
+import Form from "../../components/Form.jsx";
 import { Router } from "next/router.js";
 
 const CreatePrompt = () => {
